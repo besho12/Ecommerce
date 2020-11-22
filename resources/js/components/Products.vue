@@ -4,7 +4,7 @@
         <div class="row" v-if="$gate.isAdmin()"> <!-- mt- from 1 to 5 -->
           <div class="col-lg-4 col-md-6 col-sm-12 mt-3" v-for="product in products" :key="product.id">
             <div  class="card" style="width: 18rem;">
-                <img class="card-img-top"  style="height:250px;" :src="'/img/products/' + product.image" alt="Card image cap">
+                <img class="card-img-top"  style="height:250px;" :src="'./img/products/' + product.image" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text"></p>
