@@ -118,9 +118,7 @@
 
 <style>
 
-.widget-user-header{
 
-}
 
 </style>
 
