@@ -14,6 +14,8 @@ window.Form = Form;
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
+Vue.component('pagination', require('laravel-vue-pagination')); //pagination
+
 
 import Gate from './Gate';
 Vue.prototype.$gate = new Gate(window.user);//window.user will have authuntication user info from master.php
@@ -61,7 +63,8 @@ let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
     { path: '/profile', component: require('./components/Profile.vue').default },
     { path: '/users', component: require('./components/Users.vue').default },
-    { path: '/products', component: require('./components/Products.vue').default }
+    { path: '/products', component: require('./components/Products.vue').default },
+    { path: '*', component: require('./components/NotFound.vue').default },
   ]
 
 
@@ -97,6 +100,7 @@ Vue.filter('myDate', function(created){
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('not-found', require('./components/NotFound.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

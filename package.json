@@ -1,5 +1,5 @@
 {
-    "name":"laravelapp",
+    "name": "laravelapp",
     "private": true,
     "scripts": {
         "dev": "npm run development",
@@ -29,6 +29,7 @@
         "@fortawesome/fontawesome-free": "^5.15.1",
         "admin-lte": "^3.0.5",
         "cors": "^2.8.5",
+        "laravel-vue-pagination": "^2.3.1",
         "moment": "^2.29.1",
         "sweetalert2": "^10.9.0",
         "vform": "^1.0.1",
