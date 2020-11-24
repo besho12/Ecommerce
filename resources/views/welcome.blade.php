@@ -93,7 +93,7 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit.numquam tempora, iure delectus totam minus quam aperiam ratione dolores magni voluptates ut necessitatibus odio ipsum fuga, voluptas ab praesentium nihil?
             </p>
             <div class="hero-btn mt-5">
-                <a href="{{ route('login') }}"><button class="btn btn-editbutton">Join Now!</button></a>
+                <a href="{{ route('register') }}"><button class="btn btn-editbutton">Join Now!</button></a>
             </div>
           </div>
         </div>
