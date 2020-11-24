@@ -25,7 +25,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 v-if="!editMode" class="modal-title" id="addProductLabel">Add New Product</h5>
+                <h5 v-if="!editMode" class="modal-title" id="addProductLabel">Add Newss Product</h5>
                 <h5 v-if="editMode" class="modal-title" id="addProductLabel">Update The Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -83,6 +83,7 @@
                 .then(() => {
                     this.$Progress.finish();
                     $('#addProduct').modal('hide'); //hide modal
+                    this.form.image = ''; this.form.name = '';
                     this.loadProducts();
                 })
                 .catch(() => {
