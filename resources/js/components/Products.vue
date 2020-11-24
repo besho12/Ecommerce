@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="file" @change="updateProfile" name="image" id="" placeholder="">
+                    <input type="file" @change="updateProfile" name="image" id="image" placeholder="">
                 </div>
                 <div class="form-group">
                     <div class="col-form-label">
@@ -83,7 +83,6 @@
                 .then(() => {
                     this.$Progress.finish();
                     $('#addProduct').modal('hide'); //hide modal
-                    this.form.image = ''; this.form.name = '';
                     this.loadProducts();
                 })
                 .catch(() => {
@@ -99,6 +98,7 @@
             newModel(){
                 this.editMode = false;
                 this.form.reset();
+                document.getElementById('image').value= ''; //delete input field of image
                 $('#addProduct').modal('show'); //show modal
             },
             updateProfile(e){ // Profile image

@@ -27,6 +27,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
     </ul>
 
+    <div class="input-group input-group-sm ml-3" style="width:600px;">
+        <input class="form-control form-control-navbar" @keyup.enter="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" @click="searchit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+
 
   </nav>
   <!-- /.navbar -->

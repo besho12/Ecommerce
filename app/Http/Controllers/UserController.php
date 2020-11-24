@@ -108,6 +108,24 @@ class UserController extends Controller
         //
     }
 
+
+
+
+    public function findUser()
+    {
+        if($search = \Request::get('q')) {
+            $users = User::where(function($query) use ($search){
+                $query->where('name', 'LIKE', "%$search%")->orWhere('email', 'LIKE', "%$search%");
+            })->paginate(5);
+        }
+        return $users;
+    }
+
+
+
+
+
+
     /**
      * Update the specified resource in storage.
      *

@@ -85,7 +85,7 @@ Vue.filter('myDate', function(created){
 });
 ///////////////////////////////////////////////////////
 
-
+window.Fire = new Vue();
 
 
 /**
@@ -109,7 +109,18 @@ Vue.component('not-found', require('./components/NotFound.vue').default);
  */
 
 const app = new Vue({
+    el: '#app',
     router,
     store,
-    el: '#app',
+
+    data:{
+        search: '',
+    },
+    methods:{
+        searchit(){
+            Fire.$emit('searching');
+        }
+    }
+
+
 });
