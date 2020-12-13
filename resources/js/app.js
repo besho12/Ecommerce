@@ -9,6 +9,11 @@ require('./bootstrap');
 window.Vue = require('vue');
 import moment from 'moment';
 
+
+
+
+
+
 import { Form, HasError, AlertError } from 'vform';
 window.Form = Form;
 
@@ -34,8 +39,6 @@ Vue.use(VueProgressBar, {
     failedColor: 'red',
     height: '3px'
   })
-////////////////////////////////////////////////////////
-
 
 /// sweetalert ////////////////////////////////////////
 import Swal from 'sweetalert2'
@@ -64,8 +67,11 @@ let routes = [
     { path: '/profile', component: require('./components/Profile.vue').default },
     { path: '/users', component: require('./components/Users.vue').default },
     { path: '/products', component: require('./components/Products.vue').default },
+    { path: '/home', component: require('./components/Dashboard.vue').default },
     { path: '*', component: require('./components/NotFound.vue').default },
   ]
+
+
 
 
 
@@ -101,6 +107,7 @@ window.Fire = new Vue();
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('not-found', require('./components/NotFound.vue').default);
+Vue.component('vue-per', require('./components/Vueper.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -112,7 +119,6 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-
     data:{
         search: '',
     },
@@ -120,7 +126,6 @@ const app = new Vue({
         searchit(){
             Fire.$emit('searching');
         }
-    }
-
-
+    },
 });
+

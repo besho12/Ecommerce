@@ -1,12 +1,14 @@
 <template>
     <div class="container">
-        <button v-if="$gate.isAdmin()" style="position: absolute;top: 10px;z-index: 99999 !important;right: 28px;" class="btn btn-success"  @click="newModel">Add New Product <i class="fas fa-plus"></i></button>
-        <div class="row" v-if="$gate.isAdmin()"> <!-- mt- from 1 to 5 -->
-          <div class="col-lg-4 col-md-6 col-sm-12 mt-3" v-for="product in products" :key="product.id">
-            <div  class="card" style="width: 18rem;">
-                <img class="card-img-top"  style="height:250px;" :src="'./img/products/' + product.image" alt="Card image cap">
+        <button style="position: absolute;top: 10px;z-index: 99999 !important;right: 28px;" class="btn btn-success"  @click="newModel">Add New Product <i class="fas fa-plus"></i></button>
+        <div class="row"> <!-- mt- from 1 to 5 -->
+          <div class="col-lg-3 col-md-6 col-sm-12 mt-3" v-for="product in products" :key="product.id">
+            <div  class="card" style="width: 17rem; height:444.444px;">
+                <img class="card-img-top"  style="height:250px; object-fit:contain; margin-top:20px;" :src="'./img/products/' + product.image" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">{{product.name}}</h5>
+                    <h3 class="card-title" style="height:40px;overflow:hidden;">{{product.name}}</h3>
+                    <h5 class="card-text" style="color:blue;">Price: {{product.price}}</h5>
+                    
                     <p class="card-text"></p>
                     <a href="#" @click="editProduct(product)" class="btn btn-success pr-4 pl-4">Edit</a>
                     <a href="#" @click="deleteProduct(product.id)" class="btn btn-danger pr-3 pl-3 float-right">Delete</a>
@@ -16,9 +18,11 @@
           </div>
         </div>
 
+     <!--
         <div v-if="!$gate.isAdmin()">
             <not-found></not-found>
         </div>
+    -->
 
         <!-- Modal -->
         <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="addProductLabel" aria-hidden="true">
@@ -35,6 +39,23 @@
             <div class="modal-body">
                 <div class="form-group">
                     <input v-model="form.name" type="text" name="name" required placeholder="Product Name" class="form-control" >
+                </div>
+
+                <div class="form-group">
+                    <input v-model="form.price" type="text" name="price" required placeholder="Product Price" class="form-control" >
+                </div>
+
+
+                <div class="form-group">
+                    <select name="type" id="type" class="form-control" v-model="form.type">
+                        <option value="">Select Proudct Category</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="health">Health</option>
+                        <option value="phones">Phones</option>
+                        <option value="computing">Computing</option>
+                        <option value="accessories">Accessories</option>                        
+                        <option value="other">Other</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -64,7 +85,9 @@
                 form: new Form({
                     id:'',
                     name:'',
+                    price:'',
                     image: '',
+                    type: '',                    
                 })
             }
         },
@@ -93,6 +116,9 @@
             loadProducts(){
                 if(this.$gate.isAdmin()){
                     axios.get("api/products").then(({data}) => (this.products = data.data));
+                }
+                else if(this.$gate.isUser()){
+                    axios.get("api/products/user").then(({data}) => (this.products = data));
                 }
             },
             newModel(){

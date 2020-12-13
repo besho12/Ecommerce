@@ -33,6 +33,8 @@ Route::get('findUser', 'App\Http\Controllers\UserController@findUser');
 /////////////
 
 Route::get('products', 'App\Http\Controllers\ProductsController@index');
+Route::get('products/category/{category}', 'App\Http\Controllers\ProductsController@indexCategory');
+Route::get('products/user', 'App\Http\Controllers\ProductsController@indexUser');
 Route::post('products', 'App\Http\Controllers\ProductsController@store');
 Route::delete('products/{id}', 'App\Http\Controllers\ProductsController@destroy');
 Route::put('products/{id}', 'App\Http\Controllers\ProductsController@update');

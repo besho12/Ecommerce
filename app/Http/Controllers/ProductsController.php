@@ -6,22 +6,44 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use App\Models\Products;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 
 class ProductsController extends Controller
 {
-
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function index()
     {
         //
         return Products::latest()->paginate(100);
+    }
+
+    public function indexCategory($category)
+    {
+        $products = Products::latest()->where('type','=', $category)->get();
+        return $products;
+    }
+
+
+    public function indexUser()
+    {
+        //
+        $user = auth('api')->user();
+
+        $products = Products::latest()->where('user_id','=',$user['id'])->get();
+        return $products;
+
     }
 
     /**
@@ -32,7 +54,6 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-
         $extension = explode('/', mime_content_type($request->image))[1];
         $name = time().rand().'.'.$extension;
 
@@ -41,10 +62,14 @@ class ProductsController extends Controller
         $request->merge(['image' => $name]);
         $ske = time().rand();
 
+        $user = auth('api')->user(); ////important
+
         return Products::create([
             'name' => $request['name'],
             'image' => $request['image'],
-            'ske' => $ske
+            'type'  => $request['type'] ?? 'other',
+            'price' => $request['price'],
+            'user_id' => $user['id'],
         ]);
 
     }

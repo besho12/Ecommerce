@@ -27,7 +27,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
     </ul>
 
-    <div class="input-group input-group-sm ml-3" style="width:600px;">
+@can('isAdmin()')
+<div class="container">
+    <div class="input-group input-group-sm pl-1" style="width:300px;">
         <input class="form-control form-control-navbar" @keyup.enter="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" @click="searchit">
@@ -35,15 +37,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </button>
         </div>
       </div>
-
-
+</div>
+@endcan
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="z-index:9999999999999">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a>
+    <a href="/Dashboard" class="brand-link">
       <img src="./img/1.png" alt="laraStart Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Ecommerce</span>
@@ -96,7 +99,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/Products" class="nav-link">
                   <i class="fas fa-table nav-icon"></i>
-                  <p>Products</p>
+                  <p>All Products</p>
                 </router-link>
               </li>
 
@@ -104,12 +107,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           @endcan
 
+
+          @can('isUser')
+
+          <li class="nav-item">
+            <router-link to="/Products" class="nav-link">
+            <i class="nav-icon fas fa-user orange"></i>
+            <p>My Products</p>
+            </router-link>
+          </li>
+          @endcan
+
+
           <li class="nav-item">
             <router-link to="/Profile" class="nav-link">
             <i class="nav-icon fas fa-user orange"></i>
             <p>Profile</p>
             </router-link>
-          </li>
+          </li>          
 
             <li class="nav-item">
 
@@ -137,7 +152,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <!-- style="background:white;" -->
+  <div class="content-wrapper" >
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">

@@ -14,11 +14,12 @@
     <button class="clear" @click="loadProducts(), clearsearch()">Clear Search</button>
         <a href="#" data-toggle="modal" data-target="#minicart" style="text-decoration:none;" class="fas fa-shopping-cart cart"></a>
         <div class="row">
-         <div class="col-lg-4 col-md-6 col-sm-12 mt-3" v-for="product in products" :key="product.id">
-            <div  class="card" style="width: 18rem;">
-                <img class="card-img-top"  style="height:250px;" :src="'./img/products/' + product.image" alt="Card image cap">
+         <div class="col-lg-3 col-md-6 col-sm-12 mt-3 item" v-for="product in products" :key="product.id">
+            <div class="card card2" style="width: 17rem; height:444.444px;">
+                <img class="card-img-top"  style="height:250px; object-fit:contain; margin-top:20px;" :src="'./img/products/' + product.image" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">{{product.name}}</h5>
+                    <h3 class="card-title" style="height:40px;overflow:hidden;" >{{product.name}}</h3>
+                    <h5 class="card-text" style="color:blue;">Price: {{product.price}}</h5>
                     <p class="card-text"></p>
                     <a href="#" @click="AddToCart(product)" class="btn btn-outline-secondary pr-3 pl-3">Add To Cart</a>
                 </div>
@@ -26,7 +27,7 @@
           </div>
         </div>
         <div class="mini-cart" >
-            <div class="modal fade" id="minicart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="minicart"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -36,10 +37,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <ul class="ul">
+                    <ul class="ul pl-0" style="height: 300px;overflow-y:scroll;">
                     <li v-for="(item,index) in this.$store.state.cart" :key="index" class="media">
 
-                        <img :src=" '/img/products/' + item.image" alt="" width="55px;" height="40px;" class="imgbag">
+                        <img :src=" '/img/products/' + item.image" alt="" width="55px;" height="40px;" style="object-fit:contain;" class="imgbag">
 
                         <div class="media-body text-left">
                             <h5 class="mt-0">{{item.name}}
@@ -97,6 +98,16 @@
     margin-left: 5px;
     border: 2px solid #999;
     border-radius: 5px;
+    /* margin-left: 220px;
+    position: absolute;
+    margin-top: -45px;
+    z-index: 999999; */
+}
+.item {
+
+}
+.card2:hover {
+    filter: drop-shadow(0 0 0.3rem rgba(30,119,165,.9));
 }
 </style>
 
@@ -127,6 +138,16 @@
             }
         },
         created() {
+            Fire.$on('searching', () => {
+                let query = this.$parent.search;
+                axios.get('api/findProduct?q=' + query)
+                .then((data) => {
+                    this.products = data.data;
+                })
+                .catch(() => {
+
+                })
+            });
             this.loadProducts();
         }
     }

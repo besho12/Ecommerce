@@ -6,6 +6,7 @@
 
         <title>Laravel</title>
 
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -33,7 +34,6 @@
 
 
     <!-- Start Navbar -->
-
     <nav class="navbar sticky-top navbar-expand-md navbar-light">
     <div class="container">
     <a class="navbar-brand" href="index.php">Website Name <span>The Best In Middle East</span></a>
@@ -93,13 +93,13 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit.numquam tempora, iure delectus totam minus quam aperiam ratione dolores magni voluptates ut necessitatibus odio ipsum fuga, voluptas ab praesentium nihil?
             </p>
             <div class="hero-btn mt-5">
-                <a href="{{ route('register') }}"><button class="btn btn-editbutton">Join Now!</button></a>
+                <a href="{{ route('register') }}"><button style="margin-bottom:30px;" class="btn btn-editbutton">Join Now!</button></a>
             </div>
           </div>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6">
-            <img src="img/product.svg" class="img-fluid" style="width:500px;" alt="">
+            <img src="img/product.svg" class="img-fluid" style="width:450px;" alt="">
         </div>
       </div>
     </div>
@@ -109,13 +109,19 @@
 
 
 <section class="about text-center">
+
+<div id="app">
   <div class="container">
-    <h1>Browse All Amazing Products</h1>
+    <h1 class="mb-5">Browse All Amazing Products</h1>
+    <h3 class="mt-5 pl-5" style="text-align:left">Accessories</h3>
+    <vue-per :category="'accessories'"></vue-per>
+    <h3 class="mt-5 pl-5" style="text-align:left">Phones</h3>
+    <vue-per :category="'phones'"></vue-per> 
     <p class="lead">You Can Buy Any Product You Want To Learn More Click The Button</p>
     <button class="btn btn-outline editbutton">Learn More..</button>
   </div>
+</div>
 </section>
-
 
 
 <!-- Start Contactus -->
@@ -167,8 +173,6 @@
 
 <!-- End Contactus-->
 
-
-
 <section class="footer">
     <div class="container">
       <div class="copyright">
@@ -181,6 +185,8 @@
 
     </body>
 </html>
+
+
 
 <style>
     /* Start navbar*/
@@ -339,7 +345,6 @@
   border-color:rgb(30,119,165);
   font-size: 20px;
   padding: 5px 20px;
-
 }
 .about .btn:hover {
   background-color: rgb(30,119,165);
@@ -434,3 +439,4 @@ color:  rgb(30,119,165);
 
 
 </style>
+<script src="js/app.js"></script>

@@ -15,4 +15,7 @@ export default class Gate{
     isUser(){
         return this.user.type === 'user';
     }
+    user_id(){
+        return parseInt(this.user.id);
+    }
 }

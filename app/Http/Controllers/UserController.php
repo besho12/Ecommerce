@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         //
         $this->authorize('isAdmin'); //if the authorized user is admin show users
-        return User::latest()->paginate(5);
+        return User::latest()->paginate(10);
     }
 
     /**

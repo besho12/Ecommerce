@@ -17,7 +17,9 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->string('ske')->unique();;
+            $table->float('price', 8, 2);
+            $table->string('type')->default('other');
+            $table->bigInteger('user_id');
             $table->timestamps();
 
         });
