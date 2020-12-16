@@ -18,7 +18,7 @@
             <div class="card card2" style="width: 17rem; height:444.444px;">
                 <img class="card-img-top"  style="height:250px; object-fit:contain; margin-top:20px;" :src="'./img/products/' + product.image" alt="Card image cap">
                 <div class="card-body">
-                    <h3 class="card-title" style="height:40px;overflow:hidden;" >{{product.name}}</h3>
+                    <h3 class="card-title" style="height:40px;">{{product.name | str_limit(47)}}</h3>
                     <h5 class="card-text" style="color:blue;">Price: {{product.price}}</h5>
                     <p class="card-text"></p>
                     <a href="#" @click="AddToCart(product)" class="btn btn-outline-secondary pr-3 pl-3">Add To Cart</a>
@@ -37,15 +37,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <ul class="ul pl-0" style="height: 300px;overflow-y:scroll;">
+                    <ul class="ul pl-0 sc" style="max-height: 300px;overflow-y:scroll">
                     <li v-for="(item,index) in this.$store.state.cart" :key="index" class="media">
 
-                        <img :src=" '/img/products/' + item.image" alt="" width="55px;" height="40px;" style="object-fit:contain;" class="imgbag">
+                        <img :src=" '/img/products/' + item.image" alt="" width="65px;" height="65px;" style="margin-top:15px;object-fit:contain;" class="imgbag">
 
                         <div class="media-body text-left">
-                            <h5 class="mt-0">{{item.name}}
+                            <h5 class="mt-0">{{item.name | str_limit(32)}}
                             <span class="fa fa-times float-right remove-item" @click="$store.commit('removefromcart',item)"></span>
                             </h5>
+                            <p style="color:blue;margin-bottom: 0px !important;">Price: {{item.price}}</p>
+                            <p>Quantity: {{item.quantity}}</p>
                         </div>
                     </li>
                     </ul>
@@ -117,6 +119,8 @@
             return{
                 searchText:'',
                 products:{},
+                quantity:1,
+
             }
         },
         methods:{
@@ -125,7 +129,7 @@
             },
             AddToCart(product){
                 $('#minicart').modal('show');
-                this.$store.commit('addToCart' , { id:product.id , name:product.name, image:product.image});
+                this.$store.commit('addToCart' , { id:product.id , name:product.name, price:product.price ,image:product.image, quantity:this.quantity});
             },
             search(){
                 axios.get("api/search/" + this.searchText).then(({data}) => (this.products = data))
@@ -134,7 +138,8 @@
                 this.searchText = '';
             },
             checkout(){
-
+                $("#minicart").modal('hide')
+                this.$router.push('/checkout')
             }
         },
         created() {

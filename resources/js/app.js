@@ -68,6 +68,7 @@ let routes = [
     { path: '/users', component: require('./components/Users.vue').default },
     { path: '/products', component: require('./components/Products.vue').default },
     { path: '/home', component: require('./components/Dashboard.vue').default },
+    { path: '/checkout', component: require('./components/Checkout.vue').default },
     { path: '*', component: require('./components/NotFound.vue').default },
   ]
 
@@ -89,6 +90,21 @@ Vue.filter('upText', function(text){
 Vue.filter('myDate', function(created){
     return moment(created).format('MMMM Do YYYY');
 });
+
+
+
+Vue.filter('str_limit', function (value, size) {
+  if (!value) return '';
+  value = value.toString();
+
+  if (value.length <= size) {
+    return value;
+  }
+  return value.substr(0, size) + '...';
+});
+
+
+
 ///////////////////////////////////////////////////////
 
 window.Fire = new Vue();

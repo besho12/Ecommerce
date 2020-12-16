@@ -6,12 +6,12 @@
             <div  class="card" style="width: 17rem; height:444.444px;">
                 <img class="card-img-top"  style="height:250px; object-fit:contain; margin-top:20px;" :src="'./img/products/' + product.image" alt="Card image cap">
                 <div class="card-body">
-                    <h3 class="card-title" style="height:40px;overflow:hidden;">{{product.name}}</h3>
+                    <h3 class="card-title" style="height:40px;">{{product.name | str_limit(47)}}</h3>
                     <h5 class="card-text" style="color:blue;">Price: {{product.price}}</h5>
                     
                     <p class="card-text"></p>
-                    <a href="#" @click="editProduct(product)" class="btn btn-success pr-4 pl-4">Edit</a>
-                    <a href="#" @click="deleteProduct(product.id)" class="btn btn-danger pr-3 pl-3 float-right">Delete</a>
+                    <a href="#" @click="editProduct(product)" class="btn btn-outline-success pr-4 pl-4">Edit</a>
+                    <a href="#" @click="deleteProduct(product.id)" class="btn btn-outline-danger pr-3 pl-3 float-right">Delete</a>
                 </div>
             </div>
 
@@ -47,14 +47,15 @@
 
 
                 <div class="form-group">
-                    <select name="type" id="type" class="form-control" v-model="form.type">
-                        <option value="">Select Proudct Category</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="health">Health</option>
-                        <option value="phones">Phones</option>
-                        <option value="computing">Computing</option>
-                        <option value="accessories">Accessories</option>                        
-                        <option value="other">Other</option>
+                    <select name="type" onfocus='this.size=8;' onblur='this.size=1;' onchange='this.size=1; this.blur();' id="type" class="form-control type" v-model="form.type">
+                        <option  value="">Select Proudct Category</option>
+                        <option  value="fashion">Fashion</option>
+                        <option  value="health">Health</option>
+                        <option  value="phones">Phones</option>
+                        <option  value="computing">Computing</option>
+                        <option  value="accessories">Accessories</option>
+                        <option  value="clothing">Clothing</option>                        
+                        <option  value="other">Other</option>                        
                     </select>
                 </div>
 
@@ -224,3 +225,7 @@
 
     }
 </script>
+
+<style>
+
+</style>

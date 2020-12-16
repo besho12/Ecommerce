@@ -12,9 +12,15 @@ export default new Vuex.Store({
   },
   mutations: {
     addToCart(state,item){
+        
+        let found = state.cart.find(product => product.id == item.id);
 
-
-        state.cart.push(item);
+        if(found){
+          found.quantity++;
+        }
+        else{
+          state.cart.push(item);
+        }
         this.commit('saveData');
 
 
@@ -31,10 +37,6 @@ export default new Vuex.Store({
     },
 
  },
-
-
-
-
 
   actions: {},
   modules: {}

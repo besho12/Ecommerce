@@ -11,7 +11,7 @@
                         <div  class="card" style="height:276px;">
                             <img class="card-img-top"  style="height:180px; margin-top:20px; object-fit:contain;" :src="'./img/products/' + product.image" alt="Card image cap">
                             <div class="card-body">
-                                <h4 style="color:#474747!important" class="card-title">{{product.name}}</h4>                                
+                                <h4 style="color:#474747!important" class="card-title">{{product.name | str_limit(35) }}</h4>                                
                             </div>
                         </div>
                         </a>

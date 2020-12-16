@@ -124,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <i class="nav-icon fas fa-user orange"></i>
             <p>Profile</p>
             </router-link>
-          </li>          
+          </li>               
 
             <li class="nav-item">
 
@@ -153,7 +153,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <!-- style="background:white;" -->
-  <div class="content-wrapper" >
+  <div class="content-wrapper" style="background:white" >
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
